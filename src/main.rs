@@ -1,8 +1,4 @@
-use actix_web::{
-    get,
-    web::{Path, ServiceConfig},
-    HttpRequest, HttpResponse,
-};
+use actix_web::{get, web::ServiceConfig, HttpRequest, HttpResponse};
 use shuttle_actix_web::ShuttleActixWeb;
 
 #[get("/")]
@@ -12,11 +8,6 @@ async fn hello_world() -> &'static str {
 #[get("/-1/error")]
 async fn handle_error() -> HttpResponse {
     HttpResponse::InternalServerError().into()
-}
-
-#[derive(Debug, serde::Deserialize)]
-struct XorPath {
-    nums: Vec<u32>,
 }
 
 #[get("/1/{nums:.*}")]
